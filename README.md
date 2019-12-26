@@ -1,0 +1,15 @@
+Key Storage Secret CLI
+------------------------
+
+Meant to be a better way to store API keys than a plaintext
+file but does not provide full security against attacks. Mainly for 
+convenience of storage and *some* security. 
+
+Code Style
+---------------------------------
+Trying to stick to best go practises as much as possible:
+https://github.com/golang/go/wiki/CodeReviewComments 
+
+Status
+-------------------------------------
+Currently done with Encryption/Decryption algorithms.
