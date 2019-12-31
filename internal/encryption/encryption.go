@@ -59,6 +59,7 @@ func Decrypt(key, encryptedText string) (string, error) {
 	return string(ciphertext), nil
 
 }
+
 // creates a md5 hash as we need predictable length
 // not the most secure, however is okay for purpose
 // of simple file storage on local machine

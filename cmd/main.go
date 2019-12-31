@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../vault"
+	"../internal/vault"
 	"fmt"
 )
 

@@ -1,7 +1,7 @@
-package tests
+package test
 
 import (
-	"../encryption"
+	"../internal/encryption"
 	"log"
 	"math/rand"
 	"os"
@@ -34,7 +34,7 @@ func TestEncrypt(t *testing.T) {
 	// To make sure that decryption correctly gets the encrypted string
 	// generate random string of random length as key and as tes string
 	// encrypt test string, decrypt it and see if correct output
-	// run 5 tests
+	// run 5 test
 	for i := 0; i < 5; i++ {
 		testKey := RandStringRunes(RandIntegerMinMax())
 		testString := RandStringRunes(RandIntegerMinMax())
