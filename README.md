@@ -13,4 +13,6 @@ https://github.com/golang/go/wiki/CodeReviewComments
 Status
 -------------------------------------
 Currently done with Encryption/Decryption algorithms. <br>
-Added tests for encryption and decryption.
+Added tests for encryption and decryption. <br>
+Added a in memory storage version for initial testing purposes. <br>
+Added Makefile for project.
