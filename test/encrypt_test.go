@@ -42,7 +42,7 @@ func TestEncrypt(t *testing.T) {
 		decryptedTest, _ := encryption.Decrypt(testKey, encryptedTest)
 
 		// Configuring log file output
-		logPath, _ := filepath.Abs("../Logs/EncryptionTest_Log")
+		logPath, _ := filepath.Abs("../logs/EncryptionTest_Log")
 		f, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 		if err != nil {
 			log.Fatalf("error opening file: %v", err)

@@ -11,7 +11,7 @@ import (
 	"io"
 )
 
-// takes in a key and plaintext and returns the hex representation
+// Encrypt takes in a key and plaintext and returns the hex representation
 // of the the encrypted value
 // code is based on standard library examples at:
 // https://golang.org/pkg/crypto/cipher/#NewCFBEncrypter
@@ -33,7 +33,7 @@ func Encrypt(key, plaintext string) (string, error) {
 	return fmt.Sprintf("%x", ciphertext), nil
 }
 
-// takes in a key and the encrypted text(hex) and decrypt it
+// Decrypt takes in a key and the encrypted text(hex) and decrypt it
 // code is based on standard library examples at:
 // https://golang.org/pkg/crypto/cipher/#NewCFBDecrypter
 func Decrypt(key, encryptedText string) (string, error) {
