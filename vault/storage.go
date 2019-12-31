@@ -1,6 +1,9 @@
 package vault
 
-import "errors"
+import (
+	"../encryption"
+	"errors"
+)
 
 type Vault struct {
 	encodingKey string
@@ -13,13 +16,24 @@ func Memory(encodingKey string) Vault {
 }
 
 func (v *Vault) Get(key string) (string, error) {
-	if ret, ok := v.keyValues[key]; ok {
-		return ret, nil
+	hex, ok := v.keyValues[key]
+	if !ok {
+		return "", errors.New("No key value found.")
 	}
-	return "", errors.New("No key value found.")
+	ret, err := encryption.Decrypt(v.encodingKey, hex)
+	if err != nil {
+		return "", err
+	}
+
+	return ret, nil
 }
 
 func (v *Vault) Set(key, value string) error {
-	v.keyValues[key] = value
+	encryptedValue, err := encryption.Encrypt(v.encodingKey, value)
+	if err != nil {
+		return err
+	}
+
+	v.keyValues[key] = encryptedValue
 	return nil
 }
