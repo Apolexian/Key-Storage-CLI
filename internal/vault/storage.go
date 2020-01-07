@@ -4,7 +4,10 @@ import (
 	"../encryption"
 	"encoding/json"
 	"errors"
+	"fmt"
+	"io"
 	"os"
+	"strings"
 	"sync"
 )
 
@@ -16,7 +19,7 @@ type Vault struct {
 	keyValues   map[string]string
 }
 
-// Memory will map the encoding string and wrap it into a Vault struct
+// File will map the encoding string and wrap it into a Vault struct
 func File(encodingKey, filepath string) *Vault {
 	return &Vault{encodingKey: encodingKey,
 		keyValues: make(map[string]string),
@@ -31,8 +34,44 @@ func (v *Vault) getKeyValues() error {
 		v.keyValues = make(map[string]string)
 		return nil
 	}
-	decoder := json.NewDecoder(f)
-	err = decoder.Decode(&v.keyValues)
+	defer f.Close()
+	var sb strings.Builder
+	_, err = io.Copy(&sb, f)
+	if err != nil {
+		return err
+	}
+	decryptedJSON, err := encryption.Decrypt(v.encodingKey, sb.String())
+	if err != nil {
+		return err
+	}
+	r := strings.NewReader(decryptedJSON)
+	dec := json.NewDecoder(r)
+	err = dec.Decode(&v.keyValues)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// putKeyValues will put the encrypted values into a JSON
+// and save to file
+func (v *Vault) putKeyValues() error {
+	var sb strings.Builder
+	enc := json.NewEncoder(&sb)
+	err := enc.Encode(v.keyValues)
+	if err != nil {
+		return err
+	}
+	encryptedJSON, err := encryption.Encrypt(v.encodingKey, sb.String())
+	if err != nil {
+		return err
+	}
+	f, err := os.OpenFile(v.filepath, os.O_RDWR|os.O_CREATE, 0755)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	_, err = fmt.Fprint(f, encryptedJSON)
 	if err != nil {
 		return err
 	}
