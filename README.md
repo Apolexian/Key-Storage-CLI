@@ -15,4 +15,6 @@ Status
 Currently done with Encryption/Decryption algorithms. <br>
 Added tests for encryption and decryption. <br>
 Added a in memory storage version for initial testing purposes. <br>
-Added Makefile for project.
+Added Makefile for project. <br>
+Added initial file backed version. <br>
+Added test files for storage (currently correcting decryption issue.)
