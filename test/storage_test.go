@@ -1,7 +1,7 @@
 package test
 
 import (
-	"../internal/vault"
+	"../internal/storage"
 	"log"
 	"os"
 	"path/filepath"
@@ -17,7 +17,7 @@ func TestStorage(t *testing.T) {
 	}
 	defer f.Close()
 	log.SetOutput(f)
-	v := vault.File("test-key", ".secrets")
+	v := storage.File("test-key", ".secrets")
 
 	err = v.Set("key1", "test-value-1")
 	log.Printf("Set key1")

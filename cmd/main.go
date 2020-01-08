@@ -1,12 +1,12 @@
 package main
 
 import (
-	"../internal/vault"
+	"../internal/storage"
 	"fmt"
 )
 
 func main() {
-	v := vault.Memory("my-test-key")
+	v := storage.Memory("my-test-key")
 	err := v.Set("demo", "test_value")
 
 	if err != nil {
