@@ -98,15 +98,11 @@ func (v *Vault) Get(key string) (string, error) {
 func (v *Vault) Set(key, value string) error {
 	v.mutex.Lock()
 	defer v.mutex.Unlock()
-	encryptedValue, err := encryption.Encrypt(v.encodingKey, value)
+	err := v.getKeyValues()
 	if err != nil {
 		return err
 	}
-	err = v.getKeyValues()
-	if err != nil {
-		return err
-	}
-	v.keyValues[key] = encryptedValue
+	v.keyValues[key] = value
 	err = v.putKeyValues()
 	return err
 }
