@@ -3,8 +3,8 @@ TEST_DIR = ../$(PROJECTNAME)/test/
 
 .PHONY: test
 test:   # Run tests from test dir
-		@echo "  > $(PROJECTNAME) is running test files."
-		go test $(TEST_DIR)
+	@echo "  > $(PROJECTNAME) is running test files."
+	go test $(TEST_DIR)
 
 build:  # Build .go files into bin dir
 	@echo "  > $(PROJECTNAME) is building go files."
