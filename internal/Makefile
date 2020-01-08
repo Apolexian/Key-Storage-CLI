@@ -1,4 +1,5 @@
 build:
+	@echo "  > building internal files."
 	~/go/bin/golint encryption/encryption.go
 	gofmt -d -l encryption/encryption.go
 	go build -o ../bin/encryption encryption/encryption.go
