@@ -11,6 +11,7 @@ import (
 	"io"
 )
 
+// encryptStream provides a stream wrapper that will encrypt the provider
 func encryptStream(key string, iv []byte) (cipher.Stream, error) {
 	block, err := createCipher(key)
 	if err != nil {
@@ -55,28 +56,50 @@ func EncryptWriter(key string, w io.Writer) (*cipher.StreamWriter, error) {
 	return &cipher.StreamWriter{S: stream, W: w}, nil
 }
 
+// decryptStream will decrypt the provided encrypted stream wrapper and return a
+// decrypted stream
+func decryptStream(key string, iv []byte) (cipher.Stream, error) {
+	block, err := createCipher(key)
+	if err != nil {
+		return nil, err
+	}
+	return cipher.NewCFBDecrypter(block, iv), nil
+
+}
+
 // Decrypt takes in a key and the encrypted text(hex) and decrypt it
 // code is based on standard library examples at:
 // https://golang.org/pkg/crypto/cipher/#NewCFBDecrypter
 func Decrypt(key, encryptedText string) (string, error) {
-	block, err := createCipher(key)
-	if err != nil {
-		return "", err
-	}
-
 	ciphertext, err := hex.DecodeString(encryptedText)
 	if err != nil {
 		return "", err
 	}
 	if len(ciphertext) < aes.BlockSize {
-		return "", errors.New("encrypt: cipher is too short")
+		return "", errors.New("decrypt: cipher is too short")
 	}
 	iv := ciphertext[:aes.BlockSize]
 	ciphertext = ciphertext[aes.BlockSize:]
-	stream := cipher.NewCFBDecrypter(block, iv)
+	stream, err := decryptStream(key, iv)
+	if err != nil {
+		return "", err
+	}
 	stream.XORKeyStream(ciphertext, ciphertext)
 	return string(ciphertext), nil
+}
 
+// DecryptReader will return a wrapper reader that will decrypt data from original reader
+func DecryptReader(key string, r io.Reader) (*cipher.StreamReader, error) {
+	iv := make([]byte, aes.BlockSize)
+	n, err := r.Read(iv)
+	if n < len(iv) || err != nil {
+		errors.New("decrypt unable to read full iv")
+	}
+	stream, err := decryptStream(key, iv)
+	if err != nil {
+		return nil, err
+	}
+	return &cipher.StreamReader{S: stream, R: r}, nil
 }
 
 // creates a md5 hash as we need predictable length
