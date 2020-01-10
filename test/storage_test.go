@@ -9,7 +9,6 @@ import (
 )
 
 func TestStorage(t *testing.T) {
-
 	logPath, _ := filepath.Abs("../logs/StorageTest_Log")
 	f, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE, 0666)
 	if err != nil {
@@ -17,7 +16,7 @@ func TestStorage(t *testing.T) {
 	}
 	defer f.Close()
 	log.SetOutput(f)
-	v := storage.File("test-key", ".secrets")
+	v := storage.File("test-key", "storage.secrets")
 
 	err = v.Set("key1", "test-value-1")
 	log.Printf("Set key1")
