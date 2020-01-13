@@ -6,6 +6,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// getCmd uses the cobra package to create a get command
+// this returns the key associated with the value that
+// is input, example usage: ./script get example-api
+// will return the key associated with example-api
 var getCmd = &cobra.Command{
 	Use:   "get",
 	Short: "get a key from predefined vault",
