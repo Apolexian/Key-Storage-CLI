@@ -1,6 +1,7 @@
 package cobra
 
 import (
+	logger "../../internal/logger"
 	"../../internal/storage"
 	"fmt"
 	"github.com/spf13/cobra"
@@ -12,17 +13,26 @@ import (
 // will set the example-key for the example-api in the
 // homedir/.secrets file
 var setCmd = &cobra.Command{
-	Use:   "set",
-	Short: "set a key in predefined vault",
+	Use:   "set [value] [key] where value is the API name and key is API key",
+	Short: "create/set an entry in the secrets file for given API",
+	Long: "set takes two parameters, value and key. Value is the " +
+		"name of the API (or other value) that is to be stored" +
+		"and is used for lookup. Key is the value to be stored." +
+		"If value already exists, key will be overridden. The pair" +
+		"is stored in homedir/.secrets.",
+	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
+		logger.GeneralLogger.Println("Accessed set")
 		v := storage.File(encodingKey, vaultDir())
 		fmt.Println(args)
-		key, value := args[0], args[1]
+		value, key := args[0], args[1]
 		err := v.Set(key, value)
 		if err != nil {
+			logger.ErrorLogger.Println("could not set key")
 			panic(err)
 		}
 		fmt.Println("Value set successfully.")
+		logger.GeneralLogger.Printf("API: %s set %s", value, key)
 	},
 }
 
