@@ -2,6 +2,7 @@ package storage
 
 import (
 	"../encryption"
+	"../logger"
 	"encoding/json"
 	"errors"
 	"io"
@@ -29,12 +30,15 @@ func File(encodingKey, filepath string) *Vault {
 func (v *Vault) getKeyValues() error {
 	f, err := os.Open(v.filepath)
 	if err != nil {
+		logger.GeneralLogger.Printf("forced to establish new path as no vault found "+
+			"at %s", v.filepath)
 		v.keyValues = make(map[string]string)
 		return nil
 	}
 	defer f.Close()
 	r, err := encryption.DecryptReader(v.encodingKey, f)
 	if err != nil {
+		logger.ErrorLogger.Println("error when decrypting")
 		return err
 	}
 	return v.readKeyValues(r)
@@ -51,11 +55,13 @@ func (v *Vault) readKeyValues(r io.Reader) error {
 func (v *Vault) putKeyValues() error {
 	f, err := os.OpenFile(v.filepath, os.O_RDWR|os.O_CREATE, 0755)
 	if err != nil {
+		logger.ErrorLogger.Println("error when opening vault filepath")
 		return err
 	}
 	defer f.Close()
 	w, err := encryption.EncryptWriter(v.encodingKey, f)
 	if err != nil {
+		logger.ErrorLogger.Println("could not encrypt when setting in vault")
 		return err
 	}
 	return v.writeKeyValues(w)
