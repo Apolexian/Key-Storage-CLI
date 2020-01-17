@@ -2,10 +2,8 @@ package test
 
 import (
 	"../internal/encryption"
-	"log"
+	logger "../internal/logger"
 	"math/rand"
-	"os"
-	"path/filepath"
 	"testing"
 	"time"
 )
@@ -24,9 +22,7 @@ func RandIntegerMinMax() int {
 	// assume that no key/API string is going to be more than 2000 characters
 	// can be changed up but causes log file to be larger and may cause overflow
 	const MaxInt = 2000
-
 	randomInteger := rand.Intn(MaxInt - MinUint)
-
 	return randomInteger
 }
 func TestEncrypt(t *testing.T) {
@@ -41,26 +37,14 @@ func TestEncrypt(t *testing.T) {
 		encryptedTest, _ := encryption.Encrypt(testKey, testString)
 		decryptedTest, _ := encryption.Decrypt(testKey, encryptedTest)
 
-		// Configuring log file output
-		logPath, _ := filepath.Abs("../logs/EncryptionTest_Log")
-		f, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
-		if err != nil {
-			log.Fatalf("error opening file: %v", err)
-		}
-		defer f.Close()
-
-		// log test into file in case it is needed at any point
-		log.SetOutput(f)
-		log.Printf("Testing Encryption test number: %v", i+1)
-		log.Printf("Test Key generated: %s", testKey)
-		log.Printf("String generated: %s", testString)
-		log.Printf("Encrypted Test: %s", encryptedTest)
-		log.Printf("Decrypted Test: %s", decryptedTest)
-		log.Print("-----------------------------------------")
+		logger.TestLogger.Printf("Test Key generated: %s", testKey)
+		logger.TestLogger.Printf("String generated: %s", testString)
+		logger.TestLogger.Printf("Encrypted Test: %s", encryptedTest)
+		logger.TestLogger.Printf("Decrypted Test: %s", decryptedTest)
 
 		if decryptedTest != testString {
 			t.Errorf("Incorrect Decryption, expected %s , got %s", testString, decryptedTest)
-			log.Fatalf("Failed test %v", i)
+			logger.TestLogger.Fatalf("Failed test %v", i)
 		}
 	}
 }

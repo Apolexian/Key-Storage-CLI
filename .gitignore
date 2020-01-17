@@ -1,3 +1,4 @@
 .idea
 /test/.secrets
 internal/*.html
+cmd/.main.go.swo
