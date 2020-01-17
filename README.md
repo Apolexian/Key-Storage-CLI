@@ -31,7 +31,7 @@ Run the make file. <br>
 api_storage will be created in the cmd directory. Change into cmd
 directory and use from there. <br>
 To set a key for an API:
-```bash
+```
 [~/YourDir/cmd]: ./api_storage set [API name] [API key]
 ```
 Will set a name:key pair in the .secrets folder in the home directory. <br>
