@@ -1,7 +1,7 @@
 package test
 
 import (
-	logger "../internal/logger"
+	"../internal/logger"
 	"../internal/storage"
 	"testing"
 )

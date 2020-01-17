@@ -2,7 +2,7 @@ package test
 
 import (
 	"../internal/encryption"
-	logger "../internal/logger"
+	"../internal/logger"
 	"math/rand"
 	"testing"
 	"time"

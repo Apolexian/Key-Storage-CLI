@@ -1,7 +1,7 @@
 package cobra
 
 import (
-	logger "../../internal/logger"
+	"../../internal/logger"
 	"../../internal/storage"
 	"fmt"
 	"github.com/spf13/cobra"
