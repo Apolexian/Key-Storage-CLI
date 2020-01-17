@@ -24,3 +24,18 @@ General Logger:	2020/01/17 14:40:40 set.go:28: User set test-key for test
 General Logger:	2020/01/17 14:40:40 set.go:35: Set successfully
 General Logger:	2020/01/17 14:40:51 get.go:23: Get called by user
 General Logger:	2020/01/17 14:40:51 get.go:26: Retrieved key for test
+General Logger:	2020/01/17 14:43:28 set.go:25: Set called by user
+General Logger:	2020/01/17 14:43:28 set.go:28: User set jajsj-dmjdnjw-2i381-xx for twitter-api
+General Logger:	2020/01/17 14:43:28 set.go:35: Set successfully
+General Logger:	2020/01/17 14:43:39 get.go:23: Get called by user
+General Logger:	2020/01/17 14:43:39 get.go:26: Retrieved key for twitter_api
+Error Logger:	2020/01/17 14:43:39 get.go:29: could not get key, failed with errorno key value found
+General Logger:	2020/01/17 14:43:51 get.go:23: Get called by user
+General Logger:	2020/01/17 14:43:51 get.go:26: Retrieved key for test
+General Logger:	2020/01/17 14:44:00 get.go:23: Get called by user
+General Logger:	2020/01/17 14:44:00 get.go:26: Retrieved key for twitter-api
+General Logger:	2020/01/17 14:45:30 get.go:23: Get called by user
+General Logger:	2020/01/17 14:45:30 get.go:26: Retrieved key for twitter-api
+General Logger:	2020/01/17 14:45:38 get.go:23: Get called by user
+General Logger:	2020/01/17 14:45:38 get.go:26: Retrieved key for twitter-12
+Error Logger:	2020/01/17 14:45:38 get.go:30: could not get key, failed with errorno key value found
