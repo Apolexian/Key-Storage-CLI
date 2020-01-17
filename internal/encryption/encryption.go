@@ -12,16 +12,6 @@ import (
 	"io"
 )
 
-// encryptStream provides a stream wrapper that will encrypt the provider
-func encryptStream(key string, iv []byte) (cipher.Stream, error) {
-	block, err := createCipher(key)
-	if err != nil {
-		logger.ErrorLogger.Printf("error establishing encryption stream: %s", err)
-		return nil, err
-	}
-	return cipher.NewCFBEncrypter(block, iv), nil
-}
-
 // Encrypt takes in a key and plaintext and returns the hex representation
 // of the the encrypted value
 // code is based on standard library examples at:
@@ -61,16 +51,14 @@ func EncryptWriter(key string, w io.Writer) (*cipher.StreamWriter, error) {
 	return &cipher.StreamWriter{S: stream, W: w}, nil
 }
 
-// decryptStream will decrypt the provided encrypted stream wrapper and return a
-// decrypted stream
-func decryptStream(key string, iv []byte) (cipher.Stream, error) {
+// encryptStream provides a stream wrapper that will encrypt the provider
+func encryptStream(key string, iv []byte) (cipher.Stream, error) {
 	block, err := createCipher(key)
 	if err != nil {
-		logger.ErrorLogger.Printf("error on establishing decrypt stream: %s", err)
+		logger.ErrorLogger.Printf("error establishing encryption stream: %s", err)
 		return nil, err
 	}
-	return cipher.NewCFBDecrypter(block, iv), nil
-
+	return cipher.NewCFBEncrypter(block, iv), nil
 }
 
 // Decrypt takes in a key and the encrypted text(hex) and decrypt it
@@ -111,6 +99,18 @@ func DecryptReader(key string, r io.Reader) (*cipher.StreamReader, error) {
 		return nil, err
 	}
 	return &cipher.StreamReader{S: stream, R: r}, nil
+}
+
+// decryptStream will decrypt the provided encrypted stream wrapper and return a
+// decrypted stream
+func decryptStream(key string, iv []byte) (cipher.Stream, error) {
+	block, err := createCipher(key)
+	if err != nil {
+		logger.ErrorLogger.Printf("error on establishing decrypt stream: %s", err)
+		return nil, err
+	}
+	return cipher.NewCFBDecrypter(block, iv), nil
+
 }
 
 // creates a md5 hash as we need predictable length
