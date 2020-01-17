@@ -8,6 +8,18 @@ project was my personal need for an offline storage method for API keys
 as access to web storage (e.g https://www.vaultproject.io/) was not always available.
 Basic encryption was developed as the idea of storing keys as plaintext was unsatisfactory.
 
+Project Dependencies
+---------------------
+The project was built with and tested on: <br>
+
+|   Go	| 1.10.4|
+|---	|---	|
+|   **OS**	|**debian/amd64**|   
+
+Project dependencies outside of stdlib: <br>
+Cobra CLI tool - https://github.com/spf13/cobra <br>
+Home DIR location - https://github.com/mitchellh/go-homedir <br>
+
 
 Usage
 -------------
