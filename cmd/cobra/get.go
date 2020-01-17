@@ -13,11 +13,11 @@ import (
 // will return the key associated with example-api
 var getCmd = &cobra.Command{
 	Use: "get [value] where value is the name of the API for which" +
-		"the associated key needs to be retrieved",
+		" the associated key needs to be retrieved",
 	Short: "retrieve the API key from the vault",
 	Long: "get takes the API name that was loaded into" +
-		"the vault using set and retrieves the key associated" +
-		"with it. If the key does not exist an error is shown",
+		" the vault using set and retrieves the key associated" +
+		"with it. If the key does not exist an error is shown.",
 	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.GeneralLogger.Println("Get called by user")
