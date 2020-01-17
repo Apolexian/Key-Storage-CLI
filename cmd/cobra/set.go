@@ -22,17 +22,17 @@ var setCmd = &cobra.Command{
 		"is stored in homedir/.secrets.",
 	Args: cobra.ExactArgs(2),
 	Run: func(cmd *cobra.Command, args []string) {
-		logger.GeneralLogger.Println("Accessed set")
+		logger.GeneralLogger.Println("Set called by user")
 		v := storage.File(encodingKey, vaultDir())
-		fmt.Println(args)
 		value, key := args[0], args[1]
+		logger.GeneralLogger.Printf("User set %s for %s", key, value)
 		err := v.Set(key, value)
 		if err != nil {
 			logger.ErrorLogger.Println("could not set key")
 			panic(err)
 		}
 		fmt.Println("Value set successfully.")
-		logger.GeneralLogger.Printf("API: %s set %s", value, key)
+		logger.GeneralLogger.Println("Set successfully")
 	},
 }
 
