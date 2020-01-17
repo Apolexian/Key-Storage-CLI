@@ -19,3 +19,8 @@ General Logger:	2020/01/17 14:29:20 get.go:26: Retrieved key for oop
 Error Logger:	2020/01/17 14:29:20 get.go:29: could not get key, failed with errorno key value found
 General Logger:	2020/01/17 14:29:23 get.go:23: Get called by user
 General Logger:	2020/01/17 14:29:23 get.go:26: Retrieved key for doop
+General Logger:	2020/01/17 14:40:40 set.go:25: Set called by user
+General Logger:	2020/01/17 14:40:40 set.go:28: User set test-key for test
+General Logger:	2020/01/17 14:40:40 set.go:35: Set successfully
+General Logger:	2020/01/17 14:40:51 get.go:23: Get called by user
+General Logger:	2020/01/17 14:40:51 get.go:26: Retrieved key for test

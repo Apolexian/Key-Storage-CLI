@@ -22,14 +22,14 @@ var getCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.GeneralLogger.Println("Get called by user")
 		v := storage.File(encodingKey, vaultDir())
-		key := args[0]
-		logger.GeneralLogger.Printf("Retrieved key for %s", key)
-		value, err := v.Get(key)
+		apiName := args[0]
+		logger.GeneralLogger.Printf("Retrieved key for %s", apiName)
+		value, err := v.Get(apiName)
 		if err != nil {
 			logger.ErrorLogger.Fatalf("could not get key, failed with error"+
 				"%s", err)
 		}
-		fmt.Printf("%s = %s", key, value)
+		fmt.Printf("%s = %s", apiName, value)
 	},
 }
 

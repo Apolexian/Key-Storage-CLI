@@ -24,14 +24,14 @@ var setCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.GeneralLogger.Println("Set called by user")
 		v := storage.File(encodingKey, vaultDir())
-		value, key := args[0], args[1]
-		logger.GeneralLogger.Printf("User set %s for %s", key, value)
-		err := v.Set(key, value)
+		apiName, key := args[0], args[1]
+		logger.GeneralLogger.Printf("User set %s for %s", key, apiName)
+		err := v.Set(apiName, key)
 		if err != nil {
 			logger.ErrorLogger.Fatalf("could not get key, failed with error"+
 				"%s", err)
 		}
-		fmt.Printf("Key set successfully under name: %s.", value)
+		fmt.Printf("Key set successfully under name: %s.", apiName)
 		logger.GeneralLogger.Println("Set successfully")
 	},
 }
