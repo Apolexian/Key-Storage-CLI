@@ -28,10 +28,10 @@ var setCmd = &cobra.Command{
 		logger.GeneralLogger.Printf("User set %s for %s", key, value)
 		err := v.Set(key, value)
 		if err != nil {
-			logger.ErrorLogger.Println("could not set key")
-			panic(err)
+			logger.ErrorLogger.Fatalf("could not get key, failed with error"+
+				"%s", err)
 		}
-		fmt.Println("Value set successfully.")
+		fmt.Printf("Key set successfully under name: %s.", value)
 		logger.GeneralLogger.Println("Set successfully")
 	},
 }

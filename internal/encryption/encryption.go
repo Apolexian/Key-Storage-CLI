@@ -1,6 +1,7 @@
 package encryption
 
 import (
+	"../../internal/logger"
 	"crypto/aes"
 	"crypto/cipher"
 	"crypto/md5"
@@ -15,6 +16,7 @@ import (
 func encryptStream(key string, iv []byte) (cipher.Stream, error) {
 	block, err := createCipher(key)
 	if err != nil {
+		logger.ErrorLogger.Printf("error establishing encryption stream: %s", err)
 		return nil, err
 	}
 	return cipher.NewCFBEncrypter(block, iv), nil
@@ -32,6 +34,7 @@ func Encrypt(key, plaintext string) (string, error) {
 	}
 	stream, err := encryptStream(key, iv)
 	if err != nil {
+		logger.ErrorLogger.Printf("error encrypting: %s", err)
 		return "", err
 	}
 	stream.XORKeyStream(ciphertext[aes.BlockSize:], []byte(plaintext))
@@ -47,10 +50,12 @@ func EncryptWriter(key string, w io.Writer) (*cipher.StreamWriter, error) {
 	}
 	stream, err := encryptStream(key, iv)
 	if err != nil {
+		logger.ErrorLogger.Printf("error establishing an encryption stream: %s", err)
 		return nil, err
 	}
 	n, err := w.Write(iv)
 	if n != len(iv) || err != nil {
+		logger.ErrorLogger.Println("encrypt writer not able to write full iv to writer")
 		return nil, errors.New("encrypt writer not able to write full iv to writer")
 	}
 	return &cipher.StreamWriter{S: stream, W: w}, nil
@@ -61,6 +66,7 @@ func EncryptWriter(key string, w io.Writer) (*cipher.StreamWriter, error) {
 func decryptStream(key string, iv []byte) (cipher.Stream, error) {
 	block, err := createCipher(key)
 	if err != nil {
+		logger.ErrorLogger.Printf("error on establishing decrypt stream: %s", err)
 		return nil, err
 	}
 	return cipher.NewCFBDecrypter(block, iv), nil
@@ -73,15 +79,18 @@ func decryptStream(key string, iv []byte) (cipher.Stream, error) {
 func Decrypt(key, encryptedText string) (string, error) {
 	ciphertext, err := hex.DecodeString(encryptedText)
 	if err != nil {
+		logger.ErrorLogger.Printf("error on establishing cipher text: %s", err)
 		return "", err
 	}
 	if len(ciphertext) < aes.BlockSize {
+		logger.ErrorLogger.Println("decrypt error: cipher too short")
 		return "", errors.New("decrypt: cipher is too short")
 	}
 	iv := ciphertext[:aes.BlockSize]
 	ciphertext = ciphertext[aes.BlockSize:]
 	stream, err := decryptStream(key, iv)
 	if err != nil {
+		logger.ErrorLogger.Printf("decryption error: %s", err)
 		return "", err
 	}
 	stream.XORKeyStream(ciphertext, ciphertext)
@@ -93,10 +102,12 @@ func DecryptReader(key string, r io.Reader) (*cipher.StreamReader, error) {
 	iv := make([]byte, aes.BlockSize)
 	n, err := r.Read(iv)
 	if n < len(iv) || err != nil {
+		logger.ErrorLogger.Println("decrypt unable to read full iv")
 		errors.New("decrypt unable to read full iv")
 	}
 	stream, err := decryptStream(key, iv)
 	if err != nil {
+		logger.ErrorLogger.Printf("error on establishing decryptStream: %s", err)
 		return nil, err
 	}
 	return &cipher.StreamReader{S: stream, R: r}, nil

@@ -26,8 +26,8 @@ var getCmd = &cobra.Command{
 		logger.GeneralLogger.Printf("Retrieved key for %s", key)
 		value, err := v.Get(key)
 		if err != nil {
-			logger.ErrorLogger.Println("could not get key")
-			panic(err)
+			logger.ErrorLogger.Fatalf("could not get key, failed with error"+
+				"%s", err)
 		}
 		fmt.Printf("%s = %s", key, value)
 	},

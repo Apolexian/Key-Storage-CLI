@@ -20,7 +20,7 @@ var encodingKey string
 func init() {
 	RootCmd.PersistentFlags().StringVarP(&encodingKey,
 		"key", "k", "",
-		"key that will be used for encoding and decoding")
+		"Specify the key that will be used for encoding and decoding")
 }
 
 func vaultDir() string {
