@@ -2,3 +2,4 @@
 /test/.secrets
 internal/*.html
 cmd/.main.go.swo
+test/stream.secrets
