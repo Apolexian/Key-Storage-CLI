@@ -4,3 +4,4 @@ internal/*.html
 cmd/.main.go.swo
 test/stream.secrets
 test/storage.secrets
+cmd/cobra/docs/

@@ -1,0 +1,12 @@
+Test Logger:	2020/01/17 12:49:04 encryptionStream_test.go:13: Set stream-key1
+Test Logger:	2020/01/17 12:49:04 encryptionStream_test.go:20: Set stream-key2
+Test Logger:	2020/01/17 12:49:04 encryptionStream_test.go:27: Set stream-key3
+Test Logger:	2020/01/17 12:49:04 encryptionStream_test.go:38: Got plain: test-value-1
+Test Logger:	2020/01/17 12:49:04 encryptionStream_test.go:45: Got plain: test-value-2
+Test Logger:	2020/01/17 12:49:04 encryptionStream_test.go:52: Got plain: test-value-3
+Test Logger:	2020/01/17 13:09:26 storage_test.go:13: Set key1
+Test Logger:	2020/01/17 13:09:26 storage_test.go:20: Set key2
+Test Logger:	2020/01/17 13:09:26 storage_test.go:27: Set key3
+Test Logger:	2020/01/17 13:09:26 storage_test.go:34: Got plain: test-value-1
+Test Logger:	2020/01/17 13:09:26 storage_test.go:45: Got plain: test-value-2
+Test Logger:	2020/01/17 13:09:26 storage_test.go:56: Got plain: test-value-3

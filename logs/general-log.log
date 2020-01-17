@@ -1,0 +1,21 @@
+General Logger:	2020/01/17 13:30:24 set.go:25: Set called by user
+General Logger:	2020/01/17 13:30:24 set.go:28: User set test key for test-api
+General Logger:	2020/01/17 13:30:24 set.go:35: Set successfully
+General Logger:	2020/01/17 13:30:37 get.go:23: Get called by user
+General Logger:	2020/01/17 13:30:37 get.go:26: Retrieved key for test-api
+General Logger:	2020/01/17 14:28:07 set.go:25: Set called by user
+General Logger:	2020/01/17 14:28:07 set.go:28: User set key1 for test1
+General Logger:	2020/01/17 14:28:07 set.go:35: Set successfully
+General Logger:	2020/01/17 14:28:50 get.go:23: Get called by user
+General Logger:	2020/01/17 14:28:50 get.go:26: Retrieved key for test1
+Error Logger:	2020/01/17 14:28:50 get.go:29: could not get key, failed with errorno key value found
+General Logger:	2020/01/17 14:29:02 get.go:23: Get called by user
+General Logger:	2020/01/17 14:29:02 get.go:26: Retrieved key for key1
+General Logger:	2020/01/17 14:29:14 set.go:25: Set called by user
+General Logger:	2020/01/17 14:29:14 set.go:28: User set doop for oop
+General Logger:	2020/01/17 14:29:14 set.go:35: Set successfully
+General Logger:	2020/01/17 14:29:20 get.go:23: Get called by user
+General Logger:	2020/01/17 14:29:20 get.go:26: Retrieved key for oop
+Error Logger:	2020/01/17 14:29:20 get.go:29: could not get key, failed with errorno key value found
+General Logger:	2020/01/17 14:29:23 get.go:23: Get called by user
+General Logger:	2020/01/17 14:29:23 get.go:26: Retrieved key for doop
