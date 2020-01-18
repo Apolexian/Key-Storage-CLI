@@ -5,6 +5,7 @@ import (
 	"../logger"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"os"
 	"sync"
@@ -98,5 +99,28 @@ func (v *Vault) Set(key, value string) error {
 	}
 	v.keyValues[key] = value
 	err = v.putKeyValues()
+	return err
+}
+
+// GetAllPairs will fetch all APIs and their corresponding keys
+// from the vault in order to display all currently stored
+// API:Key pairs
+func (v *Vault) GetAllPairs() error {
+	v.mutex.Lock()
+	defer v.mutex.Unlock()
+	err := v.getKeyValues()
+	if err != nil {
+		return err
+	}
+	keys := make([]string, 0, len(v.keyValues))
+	values := make([]string, 0, len(v.keyValues))
+	for k, v := range v.keyValues {
+		keys = append(keys, k)
+		values = append(values, v)
+	}
+	numPairs := len(keys)
+	for i := 0; i < numPairs; i++ {
+		fmt.Printf("%s : %s \n", keys[i], values[i])
+	}
 	return err
 }
