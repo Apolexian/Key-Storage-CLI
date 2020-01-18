@@ -112,15 +112,9 @@ func (v *Vault) GetAllPairs() error {
 	if err != nil {
 		return err
 	}
-	keys := make([]string, 0, len(v.keyValues))
-	values := make([]string, 0, len(v.keyValues))
+
 	for k, v := range v.keyValues {
-		keys = append(keys, k)
-		values = append(values, v)
-	}
-	numPairs := len(keys)
-	for i := 0; i < numPairs; i++ {
-		fmt.Printf("%s : %s \n", keys[i], values[i])
+		fmt.Printf("%s : %s \n", k, v)
 	}
 	return err
 }

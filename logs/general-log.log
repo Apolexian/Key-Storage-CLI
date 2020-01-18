@@ -96,3 +96,12 @@ Error Logger:	2020/01/18 14:19:30 get.go:31: could not get key, failed with erro
 General Logger:	2020/01/18 14:21:03 get.go:23: Get called by user
 General Logger:	2020/01/18 14:21:03 get.go:26: Retrieved key for test1
 Error Logger:	2020/01/18 14:21:03 get.go:31: could not get key, failed with errorno key value found
+General Logger:	2020/01/18 14:36:20 get.go:23: Get called by user
+General Logger:	2020/01/18 14:36:20 get.go:26: Retrieved key for test1
+Error Logger:	2020/01/18 14:36:20 get.go:30: could not get key, failed with errorno key value found
+General Logger:	2020/01/18 14:36:33 get.go:23: Get called by user
+General Logger:	2020/01/18 14:36:33 get.go:26: Retrieved key for test1
+Error Logger:	2020/01/18 14:36:33 get.go:31: could not get key, failed with errorno key value found
+General Logger:	2020/01/18 14:39:51 get.go:23: Get called by user
+General Logger:	2020/01/18 14:39:51 get.go:26: Retrieved key for test1
+Error Logger:	2020/01/18 14:39:51 get.go:31: could not get key, failed with errorno key value found
