@@ -25,7 +25,6 @@ var getCmd = &cobra.Command{
 		apiName := args[0]
 		logger.GeneralLogger.Printf("Retrieved key for %s", apiName)
 		value, err := v.Get(apiName)
-		v.GetAllPairs()
 		if err != nil {
 			fmt.Println("API not found, could not retrieve key")
 			logger.ErrorLogger.Fatalf("could not get key, failed with error"+
