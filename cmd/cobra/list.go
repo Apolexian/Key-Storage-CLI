@@ -14,7 +14,7 @@ var listCmd = &cobra.Command{
 	Long: "provides a list of all currently stored" +
 		" API:key pairs stored inside the vault, if" +
 		" vault is not found error is shown",
-	Args: cobra.ExactArgs(1),
+	Args: cobra.ExactArgs(0),
 	Run: func(cmd *cobra.Command, args []string) {
 		logger.GeneralLogger.Println("User called list command")
 		v := storage.File(encodingKey, vaultDir())

@@ -1,14 +1,15 @@
 package storage
 
 import (
-	"../encryption"
-	"../logger"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"os"
 	"sync"
+
+	"../encryption"
+	"../logger"
 )
 
 // Vault is used to store the encoded keys
@@ -117,4 +118,30 @@ func (v *Vault) GetAllPairs() error {
 		fmt.Printf("%s : %s \n", k, v)
 	}
 	return err
+}
+
+func (v *Vault) DeleteAll() error {
+	v.mutex.Lock()
+	defer v.mutex.Unlock()
+	err := v.putKeyValues()
+	return err
+}
+
+// DeletePair deletes the specific API:Key pair
+// from the vault storage
+func (v *Vault) DeletePair(key string) error {
+	v.mutex.Lock()
+	defer v.mutex.Unlock()
+	err := v.getKeyValues()
+	if err != nil {
+		return err
+	}
+
+	for k, _ := range v.keyValues {
+		if k == key {
+			delete(v.keyValues, key)
+			err = v.putKeyValues()
+		}
+	}
+	return nil
 }
