@@ -19,7 +19,11 @@ var delCmd = &cobra.Command{
 		v := storage.File(encodingKey, vaultDir())
 		apiName := args[0]
 		fmt.Println("Attempting to delete pair")
-		v.DeletePair(apiName)
+		err := v.DeletePair(apiName)
+		if err != nil {
+			fmt.Println("Failed to delete")
+			logger.ErrorLogger.Fatalf("Failed to delete: %s", err)
+		}
 	},
 }
 

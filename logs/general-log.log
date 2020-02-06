@@ -157,3 +157,14 @@ General Logger:	2020/02/05 13:44:22 set.go:35: Set successfully
 General Logger:	2020/02/05 13:44:24 list.go:19: User called list command
 General Logger:	2020/02/05 13:44:32 del.go:18: Delete command called
 General Logger:	2020/02/05 13:44:35 list.go:19: User called list command
+General Logger:	2020/02/06 12:18:59 list.go:19: User called list command
+General Logger:	2020/02/06 12:19:14 set.go:25: Set called by user
+General Logger:	2020/02/06 12:19:14 set.go:28: User set test4 for test4
+General Logger:	2020/02/06 12:19:14 set.go:35: Set successfully
+General Logger:	2020/02/06 12:19:19 get.go:23: Get called by user
+General Logger:	2020/02/06 12:19:19 get.go:26: Retrieved key for test4
+General Logger:	2020/02/06 12:19:29 list.go:19: User called list command
+General Logger:	2020/02/06 12:19:36 del.go:18: Delete command called
+General Logger:	2020/02/06 12:19:38 list.go:19: User called list command
+General Logger:	2020/02/06 12:19:50 clear.go:17: Clear command called
+General Logger:	2020/02/06 12:19:52 list.go:19: User called list command

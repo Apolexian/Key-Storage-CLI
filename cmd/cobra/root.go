@@ -11,8 +11,8 @@ import (
 // package in this directory and added to RootCmd
 // for more info on cobra see https://github.com/spf13/cobra
 var RootCmd = &cobra.Command{
-	Use: "./cli_vault",
-	Short: "./cli_vault is used to store API keys with low level encryption locally" +
+	Use: "./api_storage",
+	Short: "./api_storage is used to store API keys with low level encryption locally" +
 		" in the home directory of the user",
 }
 
