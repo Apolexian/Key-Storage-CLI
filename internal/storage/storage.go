@@ -120,6 +120,7 @@ func (v *Vault) GetAllPairs() error {
 	return err
 }
 
+// DeleteAll will delete **everything** from the vault
 func (v *Vault) DeleteAll() error {
 	v.mutex.Lock()
 	defer v.mutex.Unlock()

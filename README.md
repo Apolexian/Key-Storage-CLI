@@ -41,7 +41,23 @@ To retrieve a key:
 ```
 Will retrieved the corresponding key. 
 
+To list all keys currently stored use:
+```bash
+[~/YourDir/cmd]: ./api_storage list
+```
+
+To delete a certain API and its key: 
+```bash
+[~/YourDir/cmd]: ./api_storage del [API name]
+```
+
+To delete **everything**:
+```bash
+[~/YourDir/cmd]: ./api_storage clear
+```
+
 To generate HTML documentation for source code: <br>
+
 Change directory to needed one and run the Makefile. For example
 if documentation is needed for encryption and storage:
 ```bash
@@ -57,9 +73,5 @@ at https://golang.org/cmd/gofmt/
 Linting:<br>
 * golint was used, see more at https://github.com/golang/lint
 
-Future goals:<br>
-* include more functionality (e.g delete a key)
-* improve deployment so script can be usable from anywhere
-* add possibility of specifying .secret directory
 
 
