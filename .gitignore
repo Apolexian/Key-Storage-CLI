@@ -6,3 +6,4 @@ test/stream.secrets
 test/storage.secrets
 cmd/cobra/docs/
 api_storage
+todo.md
