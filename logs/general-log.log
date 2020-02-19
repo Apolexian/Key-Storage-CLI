@@ -168,3 +168,10 @@ General Logger:	2020/02/06 12:19:36 del.go:18: Delete command called
 General Logger:	2020/02/06 12:19:38 list.go:19: User called list command
 General Logger:	2020/02/06 12:19:50 clear.go:17: Clear command called
 General Logger:	2020/02/06 12:19:52 list.go:19: User called list command
+General Logger:	2020/02/12 15:57:29 list.go:19: User called list command
+General Logger:	2020/02/12 15:57:29 storage.go:35: forced to establish new path as no vault found at /home/ivan/.secrets
+General Logger:	2020/02/12 15:57:39 set.go:25: Set called by user
+General Logger:	2020/02/12 15:57:39 set.go:28: User set test1 for test1
+General Logger:	2020/02/12 15:57:39 storage.go:35: forced to establish new path as no vault found at /home/ivan/.secrets
+General Logger:	2020/02/12 15:57:39 set.go:35: Set successfully
+General Logger:	2020/02/12 15:57:42 list.go:19: User called list command
